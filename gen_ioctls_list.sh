@@ -41,6 +41,7 @@ EXCLUDE_IOCTLS+=" -e MMC_IOC_MULTI_CMD"         # Missing include
 EXCLUDE_IOCTLS+=" -e MMC_IOC_CMD"               # Missing include
 EXCLUDE_IOCTLS+=" -e BLKELVGET"                 # Inside #if 0
 EXCLUDE_IOCTLS+=" -e BLKELVSET"                 # Inside #if 0
+EXCLUDE_IOCTLS+=" -e EXT4_IOC32_GROUP_ADD"
 
 # There are multiple problems:
 #  - Some declarations do not match regular expression -> Not yet supported
@@ -82,6 +83,7 @@ get_c_file() {
     echo '#include "ioctls_list.h"'
     echo '#include <asm/termbits.h>' # struct termios2
     echo '#include <linux/types.h>'  # other types
+    echo '#include <sys/types.h>'    # pid_t/uid_t
     # Place your extra headers here
     echo
     show_includes "$HEADERS"
